@@ -1,0 +1,70 @@
+<div align="center">
+  <h1>LISTA DE USUARIOS REGISTRADOS</h1>
+  <table border="0" *ngIf="hayRegistros(); else sin">
+    <tr>
+      <td>ID</td>
+      <td>Nombre</td>
+      <td>Tel&eacute;fono</td>
+      <td>E-mail</td>
+      <td>Fecha Nacimiento</td>
+      <td>Borrar</td>
+      <td>Editar</td>
+    </tr>
+    <tr *ngFor="let usuario of usuarios">
+      <td> {{usuario.idUsuario }} </td>
+      <td> {{usuario.nombre }} </td>
+      <td> {{usuario.telefono }} </td>
+      <td> {{usuario.email }} </td>
+      <td> {{usuario.fecha_nacimiento }} </td>
+      <td> 
+        
+        <button mat-raised-button (click)="bajaUsuario(usuario.idUsuario)">Borrar</button>
+      </td>
+      <td> 
+        <button mat-raised-button (click)="seleccionarUsuario(usuario.idUsuario)">Seleccionar</button>
+      </td>
+    </tr>
+  </table>
+  <ng-template #sin>
+    <p>No hay usuarios registrados.</p>
+  </ng-template>
+  <div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <textarea matInput placeholder="Nombre" [(ngModel)]="usuario.nombre"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Tel&eacute;fono</mat-label>
+        <textarea matInput placeholder="Tel&eacute;fono" [(ngModel)]="usuario.telefono"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>E-mail</mat-label>
+        <textarea matInput placeholder="E-mail" [(ngModel)]="usuario.email"></textarea>
+      </mat-form-field>
+    </div>
+    
+    <div>
+      Fecha nacimiento:
+      <br />
+      <input type="date" [(ngModel)]="usuario.fecha_nacimiento" />
+    </div>
+
+    
+<!--
+    <p> Nombre: <input type="text" [(ngModel)]="usuario.nombre" /> </p>
+    <p> Telefono: <input type="number" [(ngModel)]="usuario.telefono" /> </p>
+    <p> Email: <input type="text" [(ngModel)]="usuario.email" /> </p>
+    <p>  </p>
+  -->
+    <p> 
+      <button mat-raised-button (click)="altaUsuario()"> AGREGAR </button> 
+      <button mat-raised-button (click)="editarUsuario()"> MODIFICAR </button> 
+    </p>
+  </div>
+
+</div>
